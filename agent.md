@@ -38,11 +38,10 @@
 - 应用入口：`main.ts`
   - 创建 `new App<State>()`
   - 注册静态文件中间件 `staticFiles()`
-  - 注册一个示例中间件写入 `ctx.state.shared`
   - 初始化 SQLite 并注入 `ctx.state.db`
   - 通过 `app.fsRoutes()` 挂载文件系统路由
 - 共享状态类型：`utils.ts`
-  - `export interface State { shared: string; db: SqliteDb }`
+  - `export interface State { db: SqliteDb }`
   - `export const define = createDefine<State>()` 用于类型化
     page/handler/middleware
 
@@ -52,30 +51,22 @@
   - 连接是进程级单例（避免 dev/SSR 下重复打开）
   - 默认库文件：`./data/app.sqlite`，可通过环境变量 `SQLITE_PATH` 覆盖
   - 启动时自动执行内置迁移（`_migrations` 表记录已应用版本）
-- 示例数据模型：`db/notes.ts`
-  - `notes` 表：`id/title/content/created_at`
-- 示例 API：
-  - `GET /api/db`：返回 sqlite_version 与 sqlitePath
-  - `GET /api/notes`：列出 notes
-  - `POST /api/notes`：创建 note（json: `{ "title": "...", "content": "..." }`）
-  - `GET /api/notes/:id`：读取 note
-  - `DELETE /api/notes/:id`：删除 note
+  - 在 `sqlite.ts` 中的 `migrations` 数组内添加你需要执行的 SQL
+    语句以完成数据表创建。
 
 ## 路由结构（Fresh 文件路由）
 
 - 页面路由放在 `routes/`
   - `routes/_app.tsx`：全局 HTML 外壳（包裹所有页面的基础结构）
-  - `routes/index.tsx`：首页（示例计数器）
+  - `routes/index.tsx`：首页
 - API 路由放在 `routes/api/`
-  - `routes/api/[name].tsx`：示例 GET API，访问 `/api/:name`
-- `main.ts` 中还演示了代码式路由 `/api2/:name`（可选，等价于文件路由示例）
 
 ## Islands（客户端交互组件）
 
 - Islands 放在 `islands/`
-  - `islands/Counter.tsx`：接收 `Signal<number>`，点击按钮修改 signal 触发更新
+  - 此处放置需要在浏览器端产生交互（使用 preact hooks/signals）的组件。
 - 组件放在 `components/`
-  - `components/Button.tsx`：通用按钮（class 固定，透传 props）
+  - 纯展示型组件（无状态）通常放置于此。
 
 ## 静态资源与样式
 

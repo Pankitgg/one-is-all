@@ -22,11 +22,11 @@ function migrate(db: DatabaseSync) {
   );
 
   const migrations: Array<{ id: string; sql: string }> = [
-    {
-      id: "0001_init",
-      sql:
-        "CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')));",
-    },
+    // Add your schema migrations here, e.g.
+    // {
+    //   id: "0001_init",
+    //   sql: "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL);"
+    // },
   ];
 
   const has = db.prepare("SELECT 1 FROM _migrations WHERE id = ? LIMIT 1");

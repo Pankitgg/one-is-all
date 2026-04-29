@@ -1,9 +1,9 @@
 {
-  "nodeModulesDir": "manual",
+  "nodeModulesDir": "auto",
   "tasks": {
     "check": "deno fmt --check . && deno lint . && deno check",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "deno run -A npm:vite",
+    "build": "deno run -A npm:vite build",
     "start": "deno serve -A _fresh/server.js",
     "update": "deno run -A -r jsr:@fresh/update ."
   },
@@ -22,6 +22,7 @@
     "@/": "./",
     "fresh": "jsr:@fresh/core@^2.2.0",
     "preact": "npm:preact@^10.27.2",
+    "preact/debug": "npm:preact@^10.27.2/debug",
     "@preact/signals": "npm:@preact/signals@^2.5.0",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
     "vite": "npm:vite@^7.1.3"

@@ -16,5 +16,5 @@ deno task dev
 
 This will watch the project directory and restart as necessary.
 
-
-Exploring the Full-Stack Framework Path: The Journey of Integrating Large-Scale AI Starting with Fresh2
+Exploring the Full-Stack Framework Path: The Journey of Integrating Large-Scale
+AI Starting with Fresh2

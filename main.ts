@@ -1,13 +1,16 @@
 import { App, staticFiles } from "fresh";
 import { define, type State } from "./utils.ts";
+import { getDb } from "./db/sqlite.ts";
 
 export const app = new App<State>();
+const db = getDb();
 
 app.use(staticFiles());
 
 // Pass a shared value from a middleware
 app.use(async (ctx) => {
   ctx.state.shared = "hello";
+  ctx.state.db = db;
   return await ctx.next();
 });
 

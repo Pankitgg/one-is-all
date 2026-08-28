@@ -1,20 +1,26 @@
-# Fresh project
+# one is all（oia/咿呀）
+## 简介
+oia 中文‘咿呀’。取名自希腊圣托里尼岛下辖镇伊亚镇（Oia），。
 
-Your new Fresh project is ready to go. You can follow the Fresh "Getting
-Started" guide here: https://fresh.deno.dev/docs/getting-started
+伊亚镇位于圣托里尼岛海边的悬崖之上，黄昏时分游客聚集观赏被称作“全世界最美日落”的落日景观，被称为“艺术家村落”。
 
-### Usage
+而在这个美丽的简称之外，她的全称被我们称为‘一即是全‘’，希望她能直接作为模型实现所有程序的基座。
 
-Make sure to install Deno:
-https://docs.deno.com/runtime/getting_started/installation
+而她的声调‘咿呀’，像是孩童说话，也预示着这个项目将是阑珊学步，并且随着模型/智能体一同前进
+## 设计理念
+我们将其视为解决大模型时代，框架的脚手架层工具，它并非提供给人类。而是更加便于模型理解和实现一个可以安全运行的完整程序，包含前后端，跨平台等等
 
-Then start the project in development mode:
+基于此我们存在以下共识
 
-```
-deno task dev
-```
+1. 前后一体，或是至少前后端都要在一个目录，以提供更好的上下文
+2. 选型最小化，以实现开发环境的的快速启动及cicd
+3. 使用skill及spec，限制和规范模型/智能体
 
-This will watch the project directory and restart as necessary.
+我们并不绑定fresh和deno生态，但是目前来看deno最合适。
 
+## 快速启动
+1. 安装oia-skill
+2. 通过模型/agent初始化
+## oia-skill
 
-Exploring the Full-Stack Framework Path: The Journey of Integrating Large-Scale AI Starting with Fresh2
+## 致谢

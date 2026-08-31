@@ -1,0 +1,41 @@
+{
+  "name": "@oia/oia-fresh",
+  "version": "0.1.0",
+  "description": "oia（咿呀 / one is all）framework — 基于 Deno + Fresh 2 + Vite 的 Web 框架，npx @oia/oia-fresh init <name> 一键初始化项目",
+  "keywords": [
+    "oia",
+    "fresh",
+    "deno",
+    "vite",
+    "framework",
+    "scaffold"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pankitgg/one-is-all.git"
+  },
+  "bin": {
+    "oia-fresh": "bin/oia-fresh.js"
+  },
+  "files": [
+    "bin/",
+    "routes/",
+    "islands/",
+    "components/",
+    "assets/",
+    "static/",
+    "main.ts",
+    "client.ts",
+    "utils.ts",
+    "vite.config.ts",
+    "deno.json",
+    "deno.lock"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

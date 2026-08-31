@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * oia-fresh CLI：初始化 oia 框架项目
- * 用法：npx @oia/oia-fresh init <项目名>
+ * 用法：npx @oia-ai/oia-fresh init <项目名>
  */
 "use strict";
 

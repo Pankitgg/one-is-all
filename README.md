@@ -27,11 +27,11 @@ oia 中文‘咿呀’。取名自希腊圣托里尼岛下辖镇伊亚镇（Oia�
 我们并不绑定fresh和deno生态，但是目前来看deno最合适。
 
 ## 快速启动
-1. 安装oia-skill：`npx @oia/oia-skill`（加 `--global` 装到用户目录）
+1. 安装oia-skill：`npx @oia-ai/oia-skill`（加 `--global` 装到用户目录）
 2. 通过模型/agent初始化
 ## oia-skill
 
-oia 框架配套的 Claude Code skill，以 npm 包 `@oia/oia-skill` 发布，`npx @oia/oia-skill` 一键安装。
+oia 框架配套的 Claude Code skill，以 npm 包 `@oia-ai/oia-skill` 发布，`npx @oia-ai/oia-skill` 一键安装。
 
 ## 效果
 

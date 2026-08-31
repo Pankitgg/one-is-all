@@ -1,7 +1,7 @@
 {
-  "name": "@oia/oia-fresh",
+  "name": "@oia-ai/oia-fresh",
   "version": "0.1.0",
-  "description": "oia（咿呀 / one is all）framework — 基于 Deno + Fresh 2 + Vite 的 Web 框架，npx @oia/oia-fresh init <name> 一键初始化项目",
+  "description": "oia（咿呀 / one is all）framework — 基于 Deno + Fresh 2 + Vite 的 Web 框架，npx @oia-ai/oia-fresh init <name> 一键初始化项目",
   "keywords": [
     "oia",
     "fresh",

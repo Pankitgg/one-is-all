@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * oia-skill 安装脚本
- * 用法：npx @oia/oia-skill          安装到当前项目 .claude/skills/oia-skill
- *       npx @oia/oia-skill --global 安装到用户目录 ~/.claude/skills/oia-skill
+ * 用法：npx @oia-ai/oia-skill          安装到当前项目 .claude/skills/oia-skill
+ *       npx @oia-ai/oia-skill --global 安装到用户目录 ~/.claude/skills/oia-skill
  */
 "use strict";
 

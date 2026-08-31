@@ -1,18 +1,18 @@
 ---
 name: oia-skill
-description: 使用 oia 框架（npm 包 @oia/oia-fresh）初始化 Deno + Fresh Web 项目。当用户要求「创建 oia 项目」「初始化 oia / oia-fresh」「用 oia 框架搭一个应用」时触发。完成 Deno 环境检查、npx @oia/oia-fresh init 脚手架、启动开发服务器并验证的完整流程。
+description: 使用 oia 框架（npm 包 @oia-ai/oia-fresh）初始化 Deno + Fresh Web 项目。当用户要求「创建 oia 项目」「初始化 oia / oia-fresh」「用 oia 框架搭一个应用」时触发。完成 Deno 环境检查、npx @oia-ai/oia-fresh init 脚手架、启动开发服务器并验证的完整流程。
 ---
 
 # 初始化 oia 框架项目
 
-oia 框架以 `@oia/oia-fresh` 为名发布在 npm 仓库，初始化命令为 `npx @oia/oia-fresh init`。
+oia 框架以 `@oia-ai/oia-fresh` 为名发布在 npm 仓库，初始化命令为 `npx @oia-ai/oia-fresh init`。
 生成的项目基于 **Deno + Fresh 2（Vite 构建）**，开发服务器端口为 **5173**。
 
-本 skill 自身也发布为 npm 包 `@oia/oia-skill`，安装方式：
+本 skill 自身也发布为 npm 包 `@oia-ai/oia-skill`，安装方式：
 
 ```bash
-npx -y @oia/oia-skill           # 安装到当前项目
-npx -y @oia/oia-skill --global  # 安装到用户目录（所有项目可用）
+npx -y @oia-ai/oia-skill           # 安装到当前项目
+npx -y @oia-ai/oia-skill --global  # 安装到用户目录（所有项目可用）
 ```
 
 ## 标准流程
@@ -29,7 +29,7 @@ npx -y @oia/oia-skill --global  # 安装到用户目录（所有项目可用）
 在期望放置项目的父目录下执行：
 
 ```bash
-npx -y @oia/oia-fresh@latest init <项目名>
+npx -y @oia-ai/oia-fresh@latest init <项目名>
 ```
 
 注意事项：

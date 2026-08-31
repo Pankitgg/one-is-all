@@ -1,7 +1,7 @@
 {
-  "name": "@oia/oia-skill",
+  "name": "@oia-ai/oia-skill",
   "version": "0.1.0",
-  "description": "oia 框架的 Claude Code skill：基于 @oia/oia-fresh 初始化 Deno + Fresh Web 项目，npx @oia/oia-skill 一键安装到 .claude/skills",
+  "description": "oia 框架的 Claude Code skill：基于 @oia-ai/oia-fresh 初始化 Deno + Fresh Web 项目，npx @oia-ai/oia-skill 一键安装到 .claude/skills",
   "keywords": [
     "oia",
     "claude-code",

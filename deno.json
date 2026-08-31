@@ -16,7 +16,9 @@
     }
   },
   "exclude": [
-    "**/_fresh/*"
+    "**/_fresh/*",
+    "skills/**",
+    "bin/**"
   ],
   "imports": {
     "@/": "./",

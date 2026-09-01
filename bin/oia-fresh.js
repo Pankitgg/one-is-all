@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * oia-fresh CLI：初始化 oia 框架项目
- * 用法：npx @oia-ai/oia-fresh init <项目名>
+ * 用法：npx @oia-ai/oia-fresh init [项目名]
+ *       项目名省略或为 "." 时，在当前文件夹直接释放模板（不删除已有文件）
  */
 "use strict";
 
@@ -46,18 +47,24 @@ function copyDir(src, dest) {
 }
 
 function main() {
-  const [cmd, name] = process.argv.slice(2);
-  if (cmd !== "init" || !name) {
-    fail("用法：oia-fresh init <项目名>");
-  }
-  if (!/^[a-z0-9-_]+$/i.test(name)) {
-    fail("项目名只能包含字母、数字、- 和 _");
+  const [cmd, nameRaw] = process.argv.slice(2);
+  if (cmd !== "init") {
+    fail("用法：oia-fresh init [项目名]  （项目名省略或为 . 表示在当前文件夹直接释放）");
   }
 
-  const target = path.resolve(process.cwd(), name);
-  if (fs.existsSync(target) && fs.readdirSync(target).length > 0) {
-    fail(`目录 "${name}" 已存在且非空，请换个项目名或先清空该目录`);
+  // 项目名省略或为 "." → 在当前文件夹直接释放模板
+  const intoCwd = !nameRaw || nameRaw === ".";
+  if (!intoCwd && !/^[a-z0-9-_]+$/i.test(nameRaw)) {
+    fail("项目名只能包含字母、数字、- 和 _（在当前文件夹释放请用 .）");
   }
+
+  const target = intoCwd ? process.cwd() : path.resolve(process.cwd(), nameRaw);
+
+  // 子目录模式下，目标已存在且非空时报错；由调用方（如 skill）先与用户确认后改用 init . 释放
+  if (!intoCwd && fs.existsSync(target) && fs.readdirSync(target).length > 0) {
+    fail(`目录 "${nameRaw}" 已存在且非空：在当前文件夹直接释放请用 "init ."，或换个项目名`);
+  }
+
   fs.mkdirSync(target, { recursive: true });
 
   for (const dir of COPY_DIRS) {
@@ -68,17 +75,25 @@ function main() {
     const src = path.join(PKG_ROOT, file);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(target, file));
   }
-  fs.writeFileSync(path.join(target, ".gitignore"), GITIGNORE);
-  fs.writeFileSync(
-    path.join(target, "README.md"),
-    `# ${name}\n\n基于 oia 框架（oia-fresh，Deno + Fresh 2 + Vite）的 Web 项目。\n\n## 快速启动\n\n\`\`\`bash\ndeno task dev\n\`\`\`\n\n打开 http://127.0.0.1:5173/\n`,
-  );
+
+  // 直接释放到当前文件夹时不覆盖已有的 .gitignore / README
+  const gitignorePath = path.join(target, ".gitignore");
+  if (!fs.existsSync(gitignorePath)) fs.writeFileSync(gitignorePath, GITIGNORE);
+
+  const readmePath = path.join(target, "README.md");
+  if (!fs.existsSync(readmePath)) {
+    const projectName = intoCwd ? path.basename(target) : nameRaw;
+    fs.writeFileSync(
+      readmePath,
+      `# ${projectName}\n\n基于 oia 框架（npm @oia-ai/oia-fresh，Deno + Fresh 2 + Vite）的 Web 项目。\n\n## 快速启动\n\n\`\`\`bash\ndeno task dev\n\`\`\`\n\n打开 http://127.0.0.1:5173/\n`,
+    );
+  }
 
   console.log("");
   console.log(" 项目初始化完成！");
   console.log("");
   console.log("接下来：");
-  console.log(`  cd ${name}`);
+  if (!intoCwd) console.log(`  cd ${nameRaw}`);
   console.log("  deno task dev     # 启动开发服务器（http://127.0.0.1:5173/）");
   console.log("");
 }

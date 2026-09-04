@@ -30,7 +30,8 @@
     "utils.ts",
     "vite.config.ts",
     "deno.json",
-    "deno.lock"
+    "deno.lock",
+    "AGENTS.md"
   ],
   "engines": {
     "node": ">=18"

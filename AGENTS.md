@@ -851,6 +851,18 @@ server/db/client.ts
 - 所有用户输入都必须参数化。
 - 不拼接 SQL 字符串。
 
+### 默认运行时栈：最小化
+
+本项目遵循**最小化运行时**原则：默认不引入任何独立中间件服务，能在单进程内解决的就不起额外服务。
+
+- **默认数据库：SQLite**。需要持久化时优先用 SQLite（单文件、零运维、随部署走），通过 Deno 内置的 `node:sqlite` 或 JSR 上的轻量 SQLite 库访问；不默认引入 PostgreSQL / MySQL / 独立数据库服务。
+- **不默认引入的中间件**：Redis/Valkey（缓存）、RabbitMQ/NATS（队列）、Elasticsearch/Meilisearch（搜索）、S3/MinIO（对象存储）、独立 telemetry 后端等。这些**只有在真实需求出现时才增加**，且增加时必须：
+  - 说明该中间件解决的问题与无法用现有能力替代的原因；
+  - 通过 `server/cache/`、`server/queue/`、`server/storage/`、`server/integrations/` 等明确边界接入；
+  - 不让业务代码直接耦合具体中间件实现（走 Repository / Adapter 接口）。
+- **演进路径**：SQLite → 单机文件/内存方案 → 独立服务。不在初始阶段为「将来可能需要」提前引入 Redis、Postgres 等。需要时再升级，并保留迁移空间（migration + repository 抽象）。
+- **禁止**：为了「看起来像生产架构」而在没有真实负载或需求时堆砌中间件。参考 §28（缓存）、§29（异步任务）、§35（自主决策优先级）。
+
 ---
 
 # 13. Server / Browser 边界

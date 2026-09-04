@@ -58,3 +58,11 @@ deno task dev   # 后台启动
 - Deno 首次运行自动拉取依赖并生成 `deno.lock`；`deno.json` 使用 `nodeModulesDir: manual`，不要手动删除 `node_modules/`。
 - Windows 下 git 的 LF/CRLF 警告可忽略。
 - 直连 github.com / registry 被重置时，优先怀疑网络问题并走本地代理（见第 2 步）。
+
+## 运行时栈约定（最小化）
+
+脚手架遵循**最小化运行时**原则，初始化后默认不含任何独立中间件服务：
+
+- **需要持久化时默认用 SQLite**（单文件、零运维），通过 Deno 内置 `node:sqlite` 或 JSR 轻量 SQLite 库访问；不默认引入 Postgres/MySQL/独立数据库。
+- **不默认引入** Redis、RabbitMQ、Elasticsearch、MinIO、独立 telemetry 后端等中间件；**只有在真实需求出现时才按需增加**，且走 `server/cache/`、`server/queue/`、`server/storage/`、`server/integrations/` 等明确边界接入，业务代码走 Repository/Adapter 接口，不直接耦合具体中间件。
+- 不要为「看起来像生产架构」提前堆中间件。详细规则见项目 `AGENTS.md` §12「默认运行时栈：最小化」、§28 缓存、§29 异步任务。

@@ -14,7 +14,7 @@ const PKG_ROOT = path.join(__dirname, "..");
 
 // 从包根目录拷贝到新建项目的模板内容
 const COPY_DIRS = ["routes", "islands", "components", "assets", "static"];
-const COPY_FILES = ["deno.json", "deno.lock", "main.ts", "client.ts", "utils.ts", "vite.config.ts"];
+const COPY_FILES = ["deno.json", "deno.lock", "main.ts", "client.ts", "utils.ts", "vite.config.ts", "AGENTS.md"];
 
 // npm 打包不会携带 .gitignore，这里在初始化时直接生成
 const GITIGNORE = `# dotenv environment variable files
